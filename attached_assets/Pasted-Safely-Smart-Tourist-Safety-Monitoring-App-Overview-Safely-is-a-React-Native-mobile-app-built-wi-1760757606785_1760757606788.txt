@@ -1,0 +1,180 @@
+Safely - Smart Tourist Safety Monitoring App
+Overview
+Safely is a React Native mobile app built with Expo that helps tourists stay aware and safe by providing real-time location tracking, danger zone visualization, and emergency response features. The app uses AI + location intelligence to keep tourists connected and safe in unfamiliar areas.
+
+Tagline: "Safety, Secured by Awareness."
+
+Project Status
+Current State: MVP Complete - All features implemented and functional
+Last Updated: October 17, 2025
+Framework: React Native with Expo SDK 51
+Development Mode: Best-effort React Native setup in Replit
+Tech Stack
+Framework: React Native (Expo)
+Navigation: React Navigation (Stack Navigator)
+Maps: react-native-maps
+UI Library: React Native Paper
+Font: Poppins (Google Fonts)
+Storage: AsyncStorage for session management
+Location: expo-location
+Features Implemented
+1. Authentication Flow
+Splash/Onboarding Screen: App branding with "Get Started" CTA
+Login Screen: Dummy authentication (accepts any credentials)
+Registration Screen: Collects name, email, phone
+2. Digital Tourist ID
+Blockchain-style digital ID display
+Shows trip information (ID, hash, duration, status)
+Static dummy data for MVP
+3. Interactive Map Dashboard
+Real-time location display using react-native-maps
+User location marker (blue dot)
+7 danger zones with varied types (polygons and circles):
+Red (Restricted Zones): 2 zones with polygon and circle overlays
+Orange (Danger Zones): 2 zones with circle and polygon overlays
+Yellow (Shady Areas): 2 zones with polygon and circle overlays
+Purple (Accident Zone): 1 circle overlay
+Text labels directly on each zone showing zone type
+Welcome header with user name
+Bottom control panel with 5 buttons (settings, location sharing, SOS, report, alerts)
+4. Panic Button (3-Click Safety)
+Prominent red floating action button (SOS)
+Requires 3 clicks to send emergency alert (prevents accidental activation)
+Shows countdown popup: "Click X more times to send SOS"
+3-second timeout resets click counter if not completed
+Final confirmation: "SOS Alert Sent!" with details
+5. Geofence Detection & Zone Entry Alerts
+Automatic monitoring of user location every 3 seconds
+Detects entry into Restricted, Danger, or Shady zones
+Triggers warning alert when entering dangerous areas
+Prompts user to confirm if area is still dangerous
+Works with both circular and polygon-shaped zones using ray-casting algorithm
+6. Report Area Status
+Report button in bottom controls
+Modal interface to report area status
+Four report types: Shady Area, Dangerous Zone, Accident Occurred, Restricted Area
+Each option color-coded to match zone types
+Confirmation message after submission
+7. Safety Alerts
+List of dummy safety notifications
+Color-coded by alert type (warning, danger, info)
+Timestamps and descriptions
+"Clear All" functionality
+8. Settings & Profile
+View and edit user profile information
+Location sharing toggle (dummy state)
+Alert notifications toggle
+Trip information display
+Trip History button to view past trips
+Logout functionality
+9. Trip History
+Dedicated screen showing previous trip details
+Map view with complete trip route (polyline)
+Trip statistics: distance, duration, number of alerts
+Trip Alerts list: All safety warnings received during the trip
+User Reviews: Reports and feedback left during the trip
+Color-coded danger zones on the route
+Start and end point markers
+Design System
+Primary Color: #16365D (dark blue)
+Accent Colors:
+Red: #FF3B30 (restricted/danger)
+Orange: #FFA500 (danger zones)
+Yellow: #FFD700 (shady areas)
+Purple: #A020F0 (accident zones)
+Typography: Poppins font family (Regular, SemiBold, Bold)
+UI Style: Rounded corners (12px), modern card-based design
+App Flow
+Splash Screen → Login/Register
+Login → Map Dashboard (if successful)
+Register → Digital ID Screen → Map Dashboard
+Map Dashboard (main screen):
+Access Alerts screen (notification icon)
+Access Digital ID (profile icon)
+Access Settings (settings icon)
+Use Panic Button (SOS)
+Toggle location sharing
+Dummy Data
+User Data
+{
+  "name": "John Doe",
+  "email": "john@example.com", 
+  "phone": "+91 9876543210",
+  "trip_id": "SAF-TRIP-1024",
+  "trip_start": "2025-10-15",
+  "trip_end": "2025-10-20"
+}
+Danger Zones (Goa coordinates)
+7 zones with varied shapes and types:
+
+Restricted Zone 1: [15.4909, 73.8278] polygon (4 points)
+Danger Zone 1: [15.4950, 73.8200] circle (300m radius)
+Shady Area 1: [15.4870, 73.8300] polygon (4 points)
+Accident Zone: [15.4925, 73.8255] circle (250m radius)
+Restricted Zone 2: [15.4880, 73.8240] circle (200m radius)
+Shady Area 2: [15.4940, 73.8320] circle (180m radius)
+Danger Zone 2: [15.4890, 73.8350] polygon (4 points)
+How to Run
+For Mobile Testing (Recommended)
+Install Expo Go app on your mobile device:
+
+Android - Google Play
+iOS - App Store
+The Expo server is running and will display a QR code in the console
+
+Scan the QR code with:
+
+Android: Expo Go app
+iOS: Camera app (will open in Expo Go)
+The app will load on your device
+
+For Web Preview (Limited)
+The app runs on port 5000 with npx expo start --web --port 5000
+Access via Replit webview (note: some mobile features may not work on web)
+Full experience requires mobile device with Expo Go
+Development Commands
+npm start          # Start Expo dev server
+npm run android    # Open on Android emulator
+npm run ios        # Open on iOS simulator  
+npm run web        # Open web version
+Project Structure
+/
+├── App.js                    # Main app entry with AuthContext & navigation
+├── screens/
+│   ├── SplashScreen.js       # Onboarding/splash
+│   ├── LoginScreen.js        # Login with dummy auth
+│   ├── RegisterScreen.js     # Registration form
+│   ├── DigitalIDScreen.js    # Digital tourist ID
+│   ├── MapScreen.js          # Main map dashboard with geofencing
+│   ├── AlertsScreen.js       # Safety notifications
+│   ├── SettingsScreen.js     # Settings and profile
+│   └── TripHistoryScreen.js  # Past trip details and route
+├── assets/                   # Images and icons
+├── app.json                 # Expo configuration
+├── package.json             # Dependencies
+└── babel.config.js          # Babel configuration
+Dependencies
+expo: ~51.0.0
+react-native-maps: 1.14.0
+@react-navigation/native: ^6.1.9
+@react-navigation/stack: ^6.3.20
+react-native-paper: ^5.11.3
+expo-location: ~17.0.0
+@react-native-async-storage/async-storage: 1.23.1
+@expo-google-fonts/poppins: ^0.2.3
+Future Enhancements (Post-MVP)
+Real blockchain-backed digital ID issuance
+Live police/control room dashboard (Node.js + real-time DB)
+AI anomaly detection for tourist safety
+Real geo-fence auto-alerts from live data sources
+Multilingual support
+Voice-based SOS system
+Integration with local emergency services
+Real-time location sharing with family/friends
+Trip planning with safety route suggestions
+Notes for Development
+This is a hackathon MVP focused on demonstrating the concept
+All authentication is dummy (no backend validation)
+All data is static/hardcoded for demo purposes
+Location permissions required for full map functionality
+Designed for mobile-first experience
